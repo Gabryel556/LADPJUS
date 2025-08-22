@@ -10,12 +10,19 @@
 <body>
 
     <nav class="sidebar">
+
         <div class="sidebar-header">
-            <img src="Imagens/logo.jpg" alt="Logo LADPJUS" class="logo">
-            <h1>LADPJUS</h1>
+            <a href="#inicio"> <img src="imagens/logo.jpg" alt="Logo LADPJUS" class="logo">
+            </a>
+            <a href="#inicio" class="header-title-link"><h1>LADPJUS</h1></a>
         </div>
-        <ul>
-            <li><a href="#inicio" class="active">Apresentação</a></li>
+
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+        </button>
+        
+        <ul id="primary-navigation" data-visible="false">
+            <li><a href="#inicio">Apresentação</a></li>
             <li><a href="#quem-somos">Quem Somos</a></li>
             <li><a href="#nossa-missao">Nossa Missão</a></li>
             <li><a href="#nossa-equipe">Nossa Equipe</a></li>
@@ -26,8 +33,8 @@
             <p>© 2025 LADPJUS<br>Todos os direitos reservados.</p>
             <a href="mailto:ladpjuscentraldeatendimento@gmail.com">ladpjuscentraldeatendimento@gmail.com</a>
         </div>
-    </nav>
 
+    </nav>
     <main class="content">
         <section id="inicio" class="active">
             <h2>Bem-vindo à LADPJUS</h2>

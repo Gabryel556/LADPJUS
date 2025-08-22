@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Rolagem suave ao clicar nos links do menu
     const sidebarLinks = document.querySelectorAll('.sidebar a');
+    const primaryNav = document.querySelector('#primary-navigation');
+    const navToggle = document.querySelector('.mobile-nav-toggle');
 
     sidebarLinks.forEach(link => {
         link.addEventListener('mouseover', function(e) {
@@ -10,10 +11,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (targetSection) {
                 window.scrollTo({
-                    top: targetSection.offsetTop - 30, // Ajuste de offset para o título não ficar colado no topo
+                    top: targetSection.offsetTop - 30,
                     behavior: 'smooth'
                 });
             }
+        });
+    });
+    navToggle.addEventListener('click', () => {
+    const visibility = primaryNav.getAttribute('data-visible');
+
+    if (visibility === "false") {
+        primaryNav.setAttribute('data-visible', true);
+        navToggle.setAttribute('aria-expanded', true);
+    } else if (visibility === "true") {
+        primaryNav.setAttribute('data-visible', false);
+        navToggle.setAttribute('aria-expanded', false);
+    }
+});
+
+    const navLinks = document.querySelectorAll('#primary-navigation a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            primaryNav.setAttribute('data-visible', false);
+            navToggle.setAttribute('aria-expanded', false);
         });
     });
 
