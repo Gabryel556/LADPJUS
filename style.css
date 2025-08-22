@@ -272,7 +272,7 @@ section h2 {
     }
 
     .sidebar ul[data-visible="true"] {
-        transform: translateX(0%);
+        transform: translateX(20%);
     }
 
     /* Botão hambúrguer CORRIGIDO */
