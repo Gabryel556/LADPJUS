@@ -1,0 +1,227 @@
+body {
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    padding-left: 260px; /* Espaço para o menu lateral (ajustado) */
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.sidebar {
+    width: 260px;
+    height: 100vh; /* Usa 100% da altura da tela (viewport height) */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #5d1e20;
+    color: #f0ebe0;
+    
+    /* A MÁGICA ACONTECE AQUI: Usando Flexbox para organizar */
+    display: flex;
+    flex-direction: column; /* Organiza os itens em uma coluna vertical */
+    
+    box-shadow: 3px 0px 8px rgba(0,0,0,0.2);
+}
+
+/* Cabeçalho com Logo e Título */
+.sidebar-header {
+    text-align: center;
+    padding: 20px; /* Reduzi um pouco o padding para economizar espaço */
+    /* Esta parte não cresce nem encolhe */
+    flex-shrink: 0; 
+}
+
+.sidebar-header .logo {
+    width: 120px;  /* Reduzi um pouco o tamanho da logo */
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #f0ebe0;
+    margin-bottom: 10px; /* Espaçamento entre a logo e o título */
+}
+
+.sidebar-header h1 {
+    color: #ffffff;
+    font-size: 1.6em;
+    margin: 0;
+    letter-spacing: 1.5px;
+}
+
+/* Lista de links de navegação (ÁREA ROLÁVEL) */
+.sidebar ul {
+    list-style: none;
+    padding: 0; /* Removido padding vertical para mais controle */
+    margin: 0;
+    
+    /* ESSA É A PARTE MAIS IMPORTANTE: */
+    overflow-y: auto; /* Adiciona uma barra de rolagem APENAS se necessário */
+    flex-grow: 1; /* Faz esta área ocupar todo o espaço vertical disponível */
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 18px 30px;
+    color: #f0ebe0;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: #7a282a;
+    color: #ffffff;
+    border-left: 4px solid #ffffff;
+}
+
+/* Rodapé da Barra Lateral */
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #7a282a;
+    font-size: 0.8em;
+    line-height: 1.5;
+    color: #f0ebe0a9;
+    text-align: center;
+    /* Esta parte também não encolhe */
+    flex-shrink: 0; 
+}
+
+.sidebar-footer a {
+    color: #ffffff;
+    text-decoration: none;
+    word-break: break-all;
+    transition: color 0.3s ease;
+}
+
+.sidebar-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Conteúdo Principal */
+.content {
+    padding: 40px;
+}
+
+section {
+    padding: 60px 0;
+    border-bottom: 1px solid #ddd;
+    min-height: 80vh; /* Garante que cada seção tenha uma altura mínima */
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Seção Equipe */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;
+}
+
+.team-member h4 {
+    margin-bottom: 5px;
+}
+
+.team-member p {
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Formulário de Contato */
+.contact-form {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Lora', serif;
+}
+
+.contact-form button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #2980b9;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+/* Responsividade para Dispositivos Móveis */
+@media (max-width: 768px) {
+    body {
+        padding-left: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar ul {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .sidebar ul li a {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    section {
+        min-height: auto;
+        padding: 40px 0;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+}
