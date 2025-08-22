@@ -189,6 +189,23 @@ section h2 {
     margin-top: 20px;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* 2. Esconde o botão hambúrguer POR PADRÃO (na versão de computador) */
+.mobile-nav-toggle {
+    display: none;
+}
+
 /* Responsividade para Dispositivos Móveis */
 @media (max-width: 768px) {
     /* Ajusta o corpo para não ter o padding da sidebar */
@@ -196,94 +213,87 @@ section h2 {
         padding-left: 0;
     }
 
-    /* A sidebar agora vira o header fixo no topo */
+    /* A sidebar vira o header fixo no topo */
     .sidebar {
         width: 100%;
         height: auto;
-        position: fixed; /* Fixo no topo */
+        position: fixed;
         top: 0;
         left: 0;
-        z-index: 1000; /* Garante que fique acima de todo o conteúdo */
-        flex-direction: row; /* Itens em linha (horizontal) */
-        justify-content: space-between; /* Espaça os itens */
+        z-index: 1000;
+        flex-direction: row;
+        justify-content: space-between; /* ESSENCIAL: Coloca a logo na esquerda e o botão na direita */
         align-items: center;
-        padding: 10px 20px;
+        padding: 10px 15px; /* Padding ajustado */
         border-bottom: 1px solid #7a282a;
     }
 
     .sidebar-header {
         display: flex;
         align-items: center;
-        gap: 15px; /* Espaço entre a logo e o título */
+        gap: 10px;
         padding: 0;
         border: none;
     }
 
     .sidebar-header .logo {
-        width: 45px; /* Logo menor no header */
+        width: 45px;
         height: 45px;
         margin: 0;
         border-width: 2px;
     }
 
     .sidebar-header h1 {
-        font-size: 1.2em; /* Título menor */
+        font-size: 1.2em;
         letter-spacing: 1px;
     }
-
-    /* Oculta o rodapé da sidebar no celular para economizar espaço */
+    
+    /* Link clicável para o header todo */
+    .sidebar-header .header-title-link {
+        text-decoration: none;
+    }
+    
+    /* Esconde o rodapé no celular */
     .sidebar-footer {
         display: none;
     }
-
-    /* O menu de navegação (lista de links) */
+    
+    /* O menu de navegação (exatamente como antes) */
     .sidebar ul {
-        /* Fica posicionado fora da tela, pronto para deslizar para dentro */
         position: fixed;
-        inset: 0 0 0 30%; /* top, right, bottom, left (ocupa 70% da tela) */
-        
+        inset: 0 0 0 30%;
         flex-direction: column;
         padding: min(20vh, 10rem) 2em;
-        gap: 1em; /* Espaço entre os links */
-
-        background: hsl(0 0% 100% / 0.1); /* Fundo semi-transparente */
-        backdrop-filter: blur(1rem); /* Efeito de vidro fosco */
-
-        transform: translateX(100%); /* Começa fora da tela (à direita) */
+        gap: 1em;
+        background: hsl(0 0% 100% / 0.1);
+        backdrop-filter: blur(1rem);
+        transform: translateX(100%);
         transition: transform 350ms ease-out;
     }
 
-    /* Quando o menu estiver visível... */
     .sidebar ul[data-visible="true"] {
-        transform: translateX(0%); /* Volta para a tela */
+        transform: translateX(0%);
     }
 
-    /* Estilo do botão hambúrguer */
+    /* Botão hambúrguer CORRIGIDO */
     .mobile-nav-toggle {
-        display: block;
-        position: absolute;
-        z-index: 9999;
+        display: block; /* Mostra o botão APENAS no celular */
         background-color: transparent;
-        background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>');
+        background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>');
         background-repeat: no-repeat;
-        width: 2rem;
-        height: 2rem;
-        top: 1.5rem;
-        right: 2rem;
+        background-position: center;
+        width: 2.5rem; /* Aumentei a área de clique */
+        height: 2.5rem;
         border: 0;
+        cursor: pointer;
     }
 
-    /* Quando o menu estiver aberto, o ícone vira um "X" */
     .mobile-nav-toggle[aria-expanded="true"] {
-        background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>');
+        background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>');
     }
     
     /* Ajusta o conteúdo principal para não ficar escondido atrás do novo header */
     .content {
-        padding: 100px 20px 40px 20px; /* Adiciona padding no topo */
-    }
-
-    section h2 {
-        font-size: 2em; /* Títulos um pouco menores no celular */
+        padding: 100px 20px 40px 20px;
     }
 }
