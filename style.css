@@ -67,20 +67,40 @@ h1, h2, h3, h4 {
 
 .sidebar ul li a {
     display: block;
-    padding: 18px 30px;
+    padding: 25px 30px; /* Mais espaço vertical */
     color: #f0ebe0;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.1em;
-    border-left: 4px solid transparent;
+    font-size: 1.2em;
+    text-align: center;
+    position: relative; /* Essencial para o efeito do sublinhado */
     transition: all 0.3s ease;
 }
 
+/* O sublinhado (inicialmente invisível) */
+.sidebar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0); /* Começa com largura zero */
+    height: 3px;
+    bottom: 15px; /* Posição do sublinhado */
+    left: 0;
+    background-color: #f0ebe0;
+    transform-origin: center; /* A animação acontece a partir do centro */
+    transition: transform 0.3s ease-out;
+}
+
+/* Efeito ao passar o mouse ou quando o link está ativo */
 .sidebar ul li a:hover,
 .sidebar ul li a.active {
-    background-color: #7a282a;
     color: #ffffff;
-    border-left: 4px solid #ffffff;
+}
+
+/* O sublinhado aparece no hover */
+.sidebar ul li a:hover::after,
+.sidebar ul li a.active::after {
+    transform: scaleX(0.7); /* Expande para 70% da largura */
 }
 
 /* Rodapé da Barra Lateral */
