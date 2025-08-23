@@ -260,15 +260,26 @@ section h2 {
     
     /* O menu de navegação (exatamente como antes) */
     .sidebar ul {
-        position: fixed;
-        inset: 0 0 0 30%;
-        flex-direction: column;
-        padding: min(20vh, 10rem) 2em;
-        gap: 1em;
-        background: #eb582b(0 0% 100% / 0.1);
-        border-left: 2px solid #7a282a; 
-        transition: transform 350ms ease-out;
-    }
+    /* Posicionamento e dimensionamento */
+    position: fixed;
+    z-index: 9998; /* Um pouco abaixo do botão de fechar */
+    inset: 0 0 0 30%; 
+    
+    /* Layout interno dos links */
+    display: flex; /* Garante o comportamento flex */
+    flex-direction: column;
+    padding: min(20vh, 10rem) 2em;
+    gap: 1.5em;
+
+    /* --- A CORREÇÃO DEFINITIVA ESTÁ AQUI --- */
+    background-color: #5d1e20 !important; /* Cor vinho, 100% opaca */
+    background: #5d1e20 !important; /* Repetido para máxima compatibilidade */
+    backdrop-filter: none !important; /* Garante que não haja nenhum efeito de blur */
+
+    /* Animação de entrada e saída */
+    transform: translateX(100%);
+    transition: transform 350ms ease-out;
+}
 
     .sidebar ul[data-visible="true"] {
         transform: translateX(20%);
